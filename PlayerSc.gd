@@ -47,6 +47,10 @@ func process_movement(delta):
 			curr_jump_counter += 1
 			velocity.y -= JUMP_FORCE*curr_jump_counter
 	
+	if Input.is_action_pressed("attack"):
+		if $AnimationPlayer.assigned_animation != "attack1" || !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play("attack1")
+	
 		
 		
 		
@@ -56,17 +60,20 @@ func process_movement(delta):
 		
 	velocity.x = clamp(velocity.x,-MAX_SPEED,MAX_SPEED)
 	#print(is_on_floor(),velocity)
-	if velocity.y > 10:
-		$AnimationPlayer.play("jump_down")
-	elif velocity.y < 0:
-		$AnimationPlayer.play("jump_up")
-	elif Input.is_action_pressed("attack"):
-		if $AnimationPlayer.assigned_animation != "attack1":
-			$AnimationPlayer.play("attack1")
-	elif abs(velocity.x) < 40:
-		$AnimationPlayer.play("idle")
-	elif velocity.x != 0:
-		$AnimationPlayer.play("run")
+	if $AnimationPlayer.assigned_animation != "attack1" || !$AnimationPlayer.is_playing():
+		if velocity.y > 10:
+			if $AnimationPlayer.assigned_animation != "jump_down" || !$AnimationPlayer.is_playing():
+				$AnimationPlayer.play("jump_down")
+		elif velocity.y < 0:
+			if $AnimationPlayer.assigned_animation != "jump_up" || !$AnimationPlayer.is_playing():
+				$AnimationPlayer.play("jump_up")
+		
+		elif abs(velocity.x) < 40:
+			if $AnimationPlayer.assigned_animation != "idle" || !$AnimationPlayer.is_playing():
+				$AnimationPlayer.play("idle")
+		elif velocity.x != 0:
+			if $AnimationPlayer.assigned_animation != "run" || !$AnimationPlayer.is_playing():
+				$AnimationPlayer.play("run")
 	move_and_slide(velocity,Vector2(0,-1))
 	
 func _physics_process(delta):
