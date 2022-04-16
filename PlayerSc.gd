@@ -5,7 +5,7 @@ signal hit_signal
 export var MAX_SPEED = 200 
 export var INITIAL_SPEED = 100 
 export var ACCELERATION = 10 
-export var FRICTION = 5
+export var FRICTION = 3
 export var JUMP_FORCE = 190
 export var GRAVITY = 10
 export var JUMP_COUNT = 2
@@ -14,7 +14,7 @@ var curr_jump_counter = 0
 var SCREEN_SIZE = null 
 var velocity = Vector2(0,0)
 var timer = 0.1
-
+var gravity_counter = 1
 func _ready():
 	SCREEN_SIZE = get_viewport_rect().size
 	$Timer.start(0.1)
@@ -25,8 +25,10 @@ func process_movement(delta):
 	if is_on_floor():
 		curr_jump_counter = 0
 		velocity.y = 0
+		gravity_counter=1
 	else:
-		velocity.y += GRAVITY
+		velocity.y += GRAVITY*gravity_counter 
+		gravity_counter += 0.01
 		
 	if velocity.x > 0:
 		velocity.x -= FRICTION

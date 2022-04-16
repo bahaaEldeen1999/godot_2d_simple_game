@@ -14,6 +14,11 @@ config/name="charachter_controller"
 run/main_scene="res://PlayerSc.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=800
+window/size/height=480
+
 [input]
 
 move_right={

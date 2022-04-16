@@ -7,11 +7,15 @@
 [node name="Scene" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 334, 425 )
+position = Vector2( 93, 334 )
+scale = Vector2( 2, 2 )
 
-[node name="tile" parent="." instance=ExtResource( 2 )]
-position = Vector2( 222, 485 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="tile" parent="CanvasLayer" instance=ExtResource( 2 )]
+position = Vector2( -1, 193 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 470, 409 )
-scale = Vector2( 3, 3 )
+position = Vector2( 545, 304 )
+scale = Vector2( 5, 5 )
