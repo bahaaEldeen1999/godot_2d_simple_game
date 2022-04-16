@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var health = 100
+var health = 50
 var speed = 50
 var player 
 var velocity = Vector2.ZERO
@@ -46,8 +46,10 @@ func _physics_process(delta):
 			velocity.x += speed
 	else:
 		velocity.x = 0 
+		if $AnimationPlayer.assigned_animation != "attack" && $AnimationPlayer.assigned_animation != "hit"  :
+				$AnimationPlayer.play("attack")
 	
-	if $AnimationPlayer.assigned_animation != "hit" || !$AnimationPlayer.is_playing():
+	if ($AnimationPlayer.assigned_animation != "hit" && $AnimationPlayer.assigned_animation != "attack")  || !$AnimationPlayer.is_playing():
 		if velocity.x == 0:
 			if $AnimationPlayer.assigned_animation != "idle":
 				$AnimationPlayer.play("idle")

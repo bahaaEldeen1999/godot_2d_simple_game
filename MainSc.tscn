@@ -9,6 +9,8 @@
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 93, 334 )
 scale = Vector2( 2, 2 )
+JUMP_FORCE = 195
+GRAVITY = 13
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

@@ -67,7 +67,7 @@ func process_movement(delta):
 	velocity.x = clamp(velocity.x,-MAX_SPEED,MAX_SPEED)
 	#print(is_on_floor(),velocity)
 	if $AnimationPlayer.assigned_animation != "attack1" || !$AnimationPlayer.is_playing():
-		if velocity.y > 10:
+		if velocity.y > GRAVITY:
 			if $AnimationPlayer.assigned_animation != "jump_down" || !$AnimationPlayer.is_playing():
 				$AnimationPlayer.play("jump_down")
 		elif velocity.y < 0:
