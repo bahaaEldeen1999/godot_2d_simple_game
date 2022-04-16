@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PlayerSc.gd" type="Script" id=1]
 [ext_resource path="res://wind_SpriteSheet_224x112.png" type="Texture" id=2]
@@ -102,6 +102,9 @@ tracks/0/keys = {
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37 ]
 }
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 14.375, 10 )
+
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -113,7 +116,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 hframes = 30
 vframes = 12
-frame = 157
+frame = 150
 __meta__ = {
 "_edit_lock_": true
 }
@@ -126,3 +129,11 @@ anims/idle = SubResource( 2 )
 anims/jump_down = SubResource( 5 )
 anims/jump_up = SubResource( 4 )
 anims/run = SubResource( 3 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 24, 27 )
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
